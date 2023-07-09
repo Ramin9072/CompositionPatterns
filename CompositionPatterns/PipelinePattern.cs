@@ -161,7 +161,63 @@ namespace CompositionPatterns
             }
         }
 
-      
+    }
+
+
+    // dar Linq item Select haman mapp ast
+
+    // Funtion   .net
+
+    //map =>    select 
+    //filter =>  where 
+    //bind =>   select Many
+    //bind =>   continueWith
+    //fold =>    sum 
+    //fold =>   Aggregate 
+
+    public static class MapFuntionExtention
+    {
+        public static void SelectWithNoTransform()
+        {
+
+            var numbers = Enumerable.Range(1, 50);
+            var quearyA = numbers.Select(p => p);
+            var queryB = from n in numbers
+                         select n;
+
+            List<int> resultA = new List<int>();
+            foreach (var item in quearyA)
+            {
+                resultA.Add(item);
+            }
+
+            var resultB = queryB.ToString();
+        }
+
+        public static void SelectProjectToAnotherType()
+        {
+            var xValues = Enumerable.Range(1, 30);
+            var yValues = Enumerable.Range(100, 200);
+
+            var qA = xValues.Select(p => new Raypoint(p, 0));
+            var qB = from n in  yValues
+                     select new Raypoint(0,n);
+        }
+
+    }
+
+    public class Raypoint
+    {
+        public Raypoint(int x, int y)
+        {
+            X = x;
+            Y = y;
+        }
+
+        public int X { get; }
+        public int Y { get; }
+
+
     }
     #endregion
 }
