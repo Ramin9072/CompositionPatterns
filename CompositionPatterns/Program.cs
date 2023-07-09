@@ -7,5 +7,6 @@ internal class Program
         new Composing().DoWorkWithStandatdMethod();
 
         new Pipelining().DoWorkPopeline();
+        new ExampleEnumirable().UseEnumirablePipeline();
     }
 }

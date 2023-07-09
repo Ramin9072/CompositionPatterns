@@ -105,7 +105,65 @@ namespace CompositionPatterns
             return value + value2;
         }
     }
+
+
+    public class ExampleEnumirable
+    {
+        public void UseEnumirablePipeline()
+        {
+            var numbers = Enumerable.Range(1, 100);
+            var resultA = numbers.WhereAsPipeline(p => p % 5 == 0).ToList();
+            var resultB = numbers.WhereAsPipeline(p => p % 12 == 0).TransformAsPipeline(p => p * 10).ToList();
+            var resultC = numbers.SkipByAsPipeline(6).ToList();
+        }
+    }
+    public static class Extentions2
+    {
+        public static IEnumerable<T> WhereAsPipeline<T>(this IEnumerable<T> source, Predicate<T> predicate)
+        {
+            foreach (T item in source)
+            {
+                // در اینجا برای متد اول 
+                //WhereAsPipeline(p => p % 5 == 0)
+                // در Predicate بررسی میگردد
+                if (predicate(item))
+
+                {
+                    yield return item;
+                }
+            }
+        }
+
+        public static IEnumerable<T> TransformAsPipeline<T>(this IEnumerable<T> source, Func<T, T> transformer)
+        {
+            foreach (T item in source)
+            {
+                yield return transformer(item);
+            }
+        }
+
+        public static IEnumerable<T> SkipByAsPipeline<T>(this IEnumerable<T> source, int numberToSkip)
+        {
+            using (IEnumerator<T> e = source.GetEnumerator())
+            {
+                while (numberToSkip > 0 && e.MoveNext())
+                {
+                    numberToSkip--;
+                }
+
+                if (numberToSkip <= 0)
+                {
+                    while (e.MoveNext())
+                    {
+                        yield return e.Current;
+                    }
+                }
+            }
+        }
+
+      
+    }
+    #endregion
 }
 
-    #endregion
 
