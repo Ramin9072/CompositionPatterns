@@ -8,5 +8,6 @@ internal class Program
 
         new Pipelining().DoWorkPopeline();
         new ExampleEnumirable().UseEnumirablePipeline();
+        MapFuntionExtention.SelectWithNoTransform();
     }
 }

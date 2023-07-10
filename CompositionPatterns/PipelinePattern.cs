@@ -115,6 +115,7 @@ namespace CompositionPatterns
             var resultA = numbers.WhereAsPipeline(p => p % 5 == 0).ToList();
             var resultB = numbers.WhereAsPipeline(p => p % 12 == 0).TransformAsPipeline(p => p * 10).ToList();
             var resultC = numbers.SkipByAsPipeline(6).ToList();
+            var resultD = numbers.TestMethod(p => p % 10 == 0, p => p * 20).ToList();
         }
     }
     public static class Extentions2
@@ -161,6 +162,16 @@ namespace CompositionPatterns
             }
         }
 
+        public static IEnumerable<T> TestMethod<T>(this IEnumerable<T> source, Predicate<T> predicate, Func<T, T> transformer)
+        {
+            foreach (T item in source)
+            {
+                if (predicate(item))
+                {
+                    yield return transformer(item);
+                }
+            }
+        }
     }
 
 
@@ -177,18 +188,33 @@ namespace CompositionPatterns
 
     public static class MapFuntionExtention
     {
+        public class MappClass
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+        }
+
         public static void SelectWithNoTransform()
         {
 
             var numbers = Enumerable.Range(1, 50);
-            var quearyA = numbers.Select(p => p);
+
+            var quearyA = numbers.Select(p => new MappClass
+            {
+                Id = p
+            });
             var queryB = from n in numbers
                          select n;
+            var queryB1 = from n in numbers
+                          select new MappClass
+                          {
+                              Id = n
+                          };
 
             List<int> resultA = new List<int>();
             foreach (var item in quearyA)
             {
-                resultA.Add(item);
+                resultA.Add(item.Id);
             }
 
             var resultB = queryB.ToString();
@@ -200,8 +226,8 @@ namespace CompositionPatterns
             var yValues = Enumerable.Range(100, 200);
 
             var qA = xValues.Select(p => new Raypoint(p, 0));
-            var qB = from n in  yValues
-                     select new Raypoint(0,n);
+            var qB = from n in yValues
+                     select new Raypoint(0, n);
         }
 
     }
