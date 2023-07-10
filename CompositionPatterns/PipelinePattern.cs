@@ -106,8 +106,11 @@ namespace CompositionPatterns
         }
     }
 
+    #endregion
 
-    public class ExampleEnumirable
+    #region Enumirable
+
+    public class ExampleEnumerable
     {
         public void UseEnumirablePipeline()
         {
@@ -173,7 +176,9 @@ namespace CompositionPatterns
             }
         }
     }
+    #endregion
 
+    #region Mapp
 
     // dar Linq item Select haman mapp ast
 
@@ -242,9 +247,39 @@ namespace CompositionPatterns
 
         public int X { get; }
         public int Y { get; }
+    }
+    #endregion
 
+    #region Filter 
+
+    public class FilterClass
+    {
+        public void FilterSimple()
+        {
+            var numbers = Enumerable.Range(1, 200);
+
+            var resultA = numbers.Where(p => p < 20).Select(p => p);
+            var resultB = from n in numbers 
+                          where n < 20 
+                          select n;
+
+            var resultC = resultA.ToList();
+            var resultD = resultB.ToList();
+        }
+        // عدد اول
+        public void FilterForPrimeNumberes()
+        {
+
+            // تشخیص عدد اول
+            Func<int, bool> prime = p => Enumerable.Range(2, (int)Math.Sqrt(p) - 1)
+            .All(divisor => p % divisor != 0);
+            // عدد های مد نظر
+            var primes = Enumerable.Range(2, 1000 * 1000).Where(prime);
+
+        }
 
     }
+
     #endregion
 }
 
