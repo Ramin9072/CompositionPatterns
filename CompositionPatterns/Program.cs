@@ -11,5 +11,6 @@ internal class Program
         MapFuntionExtention.SelectWithNoTransform();
         new FilterClass().FilterForPrimeNumberes();
         new FilterClass().FilterSimple();
+        new Flatening().Flatten();
     }
 }

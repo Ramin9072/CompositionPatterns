@@ -259,8 +259,8 @@ namespace CompositionPatterns
             var numbers = Enumerable.Range(1, 200);
 
             var resultA = numbers.Where(p => p < 20).Select(p => p);
-            var resultB = from n in numbers 
-                          where n < 20 
+            var resultB = from n in numbers
+                          where n < 20
                           select n;
 
             var resultC = resultA.ToList();
@@ -280,6 +280,40 @@ namespace CompositionPatterns
 
     }
 
+    #endregion
+
+    #region Flatening 
+    // Select many 
+    // Join
+
+    public class Flatening
+    {
+        public void Flatten()
+        {
+            var brandA = new Brand() { Name = "Fancy", Colors = new List<string>() { "Red", "Green" }};
+            var brandB = new Brand() { Name = "Lux", Colors = new List<string>() { "Silver", "Gold" }};
+            var brandC = new Brand() { Name = "Matt", Colors = new List<string>() { "Black", "White" }};
+
+            List<Brand> brands = new List<Brand>();
+            brands.Add(brandA);
+            brands.Add(brandB);
+            brands.Add(brandC);
+
+            var resultA = brands.Select(p => p.Colors).ToList(); // nested result لایه ای شد
+
+            // FLATEN vvvvvv
+            var resultB = brands.SelectMany(p => p.Colors).ToList(); // result لایه ای نیست
+
+        }
+
+    }
+
+    public class Brand
+    {
+        public string Name { get; set; }
+        public List<string> Colors { get; set; }
+
+    }
     #endregion
 }
 
