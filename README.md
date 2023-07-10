@@ -10,3 +10,7 @@
 #### 6- مفهوم هر یک از دستورات Functional با .net 
 ! ![2](https://github.com/Ramin9072/CompositionPatterns/assets/25898915/2fc2cdf4-53c5-4454-b60a-9a5e1750014b) 
 #### 7- استفاده از فیلتر در ریجن Filter
+#### 8- Flatten 
+!![3](https://github.com/Ramin9072/CompositionPatterns/assets/25898915/a31b35c2-8234-4a6a-8f32-1183128f8218)
+
+
