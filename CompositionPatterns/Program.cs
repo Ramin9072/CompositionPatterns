@@ -13,5 +13,6 @@ internal class Program
         new FilterClass().FilterSimple();
         new Flatening().FlattenSelectSelectMany();
         new Flatening().JoinExample();
+        new FOLD().AggregateExample();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -327,6 +328,33 @@ namespace CompositionPatterns
     }
     #endregion
 
+    #region FOLD OR Aggregate Max Min Sum Count .... 
+
+    public class FOLD
+    {
+
+        public void AggregateExample()
+        {
+            var numberA = Enumerable.Range(1, 100).ToArray();
+            ImmutableList<int> SetA = ImmutableList.Create(numberA);
+            ImmutableList<int> SetB = ImmutableList.Create(numberA.Where(p => p % 6 == 0).ToArray());
+
+            // Fold ha yek SingleResult ast 
+            var total = SetA.Sum();
+            var max = SetA.Max();
+            var count = SetA.Count();
+            // ..... 
+
+            // Custom aggregate 
+
+            var multipleOf1 = SetA.Aggregate((total, count) => total * count);
+            var multipleOf2 = SetA.Aggregate(100,(total, count) => total * count);
+
+
+        }
+    }
+
+    #endregion
 }
 
 
