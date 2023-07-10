@@ -288,11 +288,11 @@ namespace CompositionPatterns
 
     public class Flatening
     {
-        public void Flatten()
+        public void FlattenSelectSelectMany()
         {
-            var brandA = new Brand() { Name = "Fancy", Colors = new List<string>() { "Red", "Green" }};
-            var brandB = new Brand() { Name = "Lux", Colors = new List<string>() { "Silver", "Gold" }};
-            var brandC = new Brand() { Name = "Matt", Colors = new List<string>() { "Black", "White" }};
+            var brandA = new Brand() { Name = "Fancy", Colors = new List<string>() { "Red", "Green" } };
+            var brandB = new Brand() { Name = "Lux", Colors = new List<string>() { "Silver", "Gold" } };
+            var brandC = new Brand() { Name = "Matt", Colors = new List<string>() { "Black", "White" } };
 
             List<Brand> brands = new List<Brand>();
             brands.Add(brandA);
@@ -306,6 +306,17 @@ namespace CompositionPatterns
 
         }
 
+        public void JoinExample()
+        {
+            var numA = Enumerable.Range(2, 3);
+            var numB = Enumerable.Range(5, 7);
+
+            var basicSelectJoin = numA.Select(p => numB.Select(b => $"A: {p} B: {b}"));
+            var selectManyJoin = numA.SelectMany(p => numB.Select(b => $"A: {p} B: {b}"));
+            var resultA = basicSelectJoin.ToList();
+            var resultB = selectManyJoin.ToList();
+        }
+
     }
 
     public class Brand
@@ -315,6 +326,7 @@ namespace CompositionPatterns
 
     }
     #endregion
+
 }
 
 
