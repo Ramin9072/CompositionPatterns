@@ -11,7 +11,10 @@
 ! ![2](https://github.com/Ramin9072/CompositionPatterns/assets/25898915/2fc2cdf4-53c5-4454-b60a-9a5e1750014b) 
 #### 7- استفاده از فیلتر در ریجن Filter
 #### 8- Flatten 
-!![Uploading 3.png…]()
+!![3](https://github.com/Ramin9072/CompositionPatterns/assets/25898915/c830cf18-451c-44d6-aced-a7d37a0f7d6a)
+
+
+
 
 
 
